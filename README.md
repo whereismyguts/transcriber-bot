@@ -7,13 +7,13 @@
 
 ## Установка
 
-1. Установить зависимости (в т.ч. Whisper):
+### 1. Установить зависимости (в т.ч. Whisper):
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Установить ffmpeg
+### 2. Установить ffmpeg
 
 Транскрибирует посредством [Whisper от OpenAI](https://github.com/openai/whisper), для его работы необходимо поставить ffmpeg:
 
@@ -30,7 +30,14 @@ choco install ffmpeg
 scoop install ffmpeg
 ```
 
-3. Прописать в .env файле свой BOT_TOKEN, полученный в @BotFather
+### 3. Прописать в .env файле:
+
+`BOT_TOKEN`, полученный в @BotFather
+
+Необязательные но важные парамтеры:
+
+`WHISPER_MODEL` = 'base' # Модель для транскрибирования Whisper (tiny, base, large)
+`SUB_LANG` = 'en' # Язык субтитров (en, ru, etc.) которые будут скачиваться с ютуба. Если не указано, то субтитры не будут скачиваться.
 
 ## Запуск бота
 
