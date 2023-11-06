@@ -119,16 +119,23 @@ async def trnscrb(update, f_name, audio_file=None):
             
     t = 10 * 60000
     audio = AudioSegment.from_file(audio_file).set_frame_rate(22050)
-
+    # print("Transcribe without splitting")
+    # audio.export(f_name+'_tmp.mp3', format="mp3", bitrate="64k")
+    # result = model.transcribe(f_name+'_tmp.mp3', fp16=False)
+    # print('result: ',result['text'])
+    # await get_answer(update, result['text'])
+    # return result['text']
+    
     # Проверяем длину аудиофайла
     if len(audio) <= t:
-        print("10 минут или меньше, сохраняем как есть")
+        print("Less than 10 minutes, transcribe without splitting")
         audio.export(f_name+'_tmp.mp3', format="mp3", bitrate="64k")
         result = model.transcribe(f_name+'_tmp.mp3', fp16=False)
         print('result: ',result['text'])
         await get_answer(update, result['text'])
         # os.remove(f_name+'_tmp.mp3')
     else:
+        print("More than 10 minutes, split and transcribe")
         parts = int(len(audio) / t)
         print('len(audio) =', len(audio), 'parts =', parts)
         # Разбиваем на части
