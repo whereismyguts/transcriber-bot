@@ -1,7 +1,39 @@
-# Transcriber
-Простой бот телеграм. Принимает голосовые и аудиосообщения, после чего транскрибирует их и выдает текст пользователю. Так же принимает ссылки с ютуба, вытаскивает аудио и транскрибирует его, либо скачивает автоматические субтитры, выдает пользователю текст.
-Пока не обрабатывает "кружочки" с телеграма, нет многопоточности. 
-Транскрибирует посредством Whisper от OpenAI.
-Как установить whisper  https://github.com/openai/whisper
-До начала работы с Telethon необходимо получить собственный API ID и Hash. Это можно сделать пройдя по ссылке https://my.telegram.org/auth?to=apps, указав номер телефона привязанный к профилю, и заполнив App title и Short name. Platform - можно выбрать “Other (specify in description)”. Остальные параметры можно оставить пустыми. 
-остальные модули через pip install
+# Transcriber telegram bot
+
+Принимает голосовые и аудиосообщения, после чего транскрибирует их и выдает текст пользователю.
+Так же принимает ссылки с ютуба, вытаскивает аудио и транскрибирует его, либо скачивает автоматические субтитры, выдает пользователю текст.
+
+Пока не обрабатывает "кружочки" с телеграма, нет многопоточности.
+
+## Установка
+
+1. Установить зависимости (в т.ч. Whisper):
+
+```bash
+pip install -r requirements.txt
+```
+
+2. Установить ffmpeg
+
+Транскрибирует посредством [Whisper от OpenAI](https://github.com/openai/whisper), для его работы необходимо поставить ffmpeg:
+
+```bash
+# on Ubuntu or Debian:
+sudo apt update && sudo apt install ffmpeg
+# on Arch Linux:
+sudo pacman -S ffmpeg
+# on MacOS using Homebrew (https://brew.sh/):
+brew install ffmpeg
+# on Windows using Chocolatey (https://chocolatey.org/):
+choco install ffmpeg
+# on Windows using Scoop (https://scoop.sh/):
+scoop install ffmpeg
+```
+
+3. Прописать в .env файле свой BOT_TOKEN, полученный в @BotFather
+
+## Запуск бота
+
+```bash
+python main.py
+```
